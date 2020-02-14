@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gravity Text</title>
+  <script type="text/javascript" src="Gravitext.min.js"></script>
+  <script type="text/javascript">
+
+    var gravtxt;
+    var counter = 0;
+
+    function makePhrases() {
+      var words1 = ["translating", "transducing", "transcoding", "traduzir", "transduzir", "transcodificar"];
+      var words2 = ["is", "é"];
+      var words3 = ["literature", "literatura", "process", "processo", "rooted", "enraizada", "movement", "movimento", "expressiveness", "expressividade", "converging", "convergente", "diverging", "divergente", "languages", "linguagens", "keyword",
+        "palavra-chave",
+        "context", "contexto", "digital", "digital", "practices", "práticas", "interface", "interface", "thought", "pensamento", "subject", "sujeito", "tool", "objecto", "art", "arte", "technology", "tecnologia", "human", "humano",
+        "machine", "máquina", "cognitive", "cognitiva", "symbolic", "simbólica", "performative", "performativa", "linguistic", "linguística", "electronic", "electrónica", "in-between space", "espaço intermédio", "inter-semiosis", "inter-semiose",
+        "transference", "transferência", "transformation", "transformação", "multimodal", "multimodal", "intermedial", "intermedial", "metapoetic", "metapoética", "nature", "natureza", "translatable", "traduzível", "continuity", "continuidade",
+        "preservation", "preservação", "conservation", "conservação", "emulation", "emulação", "disruption", "disrupção", "material", "material", "different", "diferente", "expressive", "expressiva", "poetic", "poética", "enunciation",
+        "enunciação",
+        "messiness", "confusão", "analogue", "analógica", "body", "corpo", "discreteness", "discreta", "system", "sistema", "interpretation", "interpretação", "incompleteness", "incompletude", "différance", "diferença", "historical", "histórica",
+        "moment", "momento", "culture", "cultura", "instrumental", "instrumental", "dimensions", "dimensões", "cybernetics", "cibernética", "resistance", "resistência", "[r]existence", "[r]existência", "appropriation", "apropriação", "derivation",
+        "derivação",
+        "creativity", "criatividade", "reinvention", "reinvenção", "tool", "ferramenta", "counter-translation", "contra-tradução"
+      ];
+
+      var rand1 = Math.floor(Math.random() * words1.length);
+      var rand2 = Math.floor(Math.random() * words2.length);
+      var rand3 = Math.floor(Math.random() * words3.length);
+
+      var phrase = words1[rand1] + " " + words2[rand2] + " " + words3[rand3];
+      if (counter > 9) {
+        counter = 0;
+        gravtxt.all_clear();
+      }
+      gravtxt.add_phrase(phrase);
+      counter++;
+      var phraseElement = document.getElementById("phrase");
+      phraseElement.innerHTML += phrase + "<br>";
+      //window.scrollTo(0,document.body.scrollHeight);
+      var objdiv = document.getElementById("phrases");
+      objdiv.scrollTop = objdiv.scrollHeight;
+      setTimeout(function() {
+        makePhrases()
+      }, 3000);
+    }
+
+    function start_all() {
+      gravtxt = new Gravitext(document.getElementById("gt"));
+      gravtxt.world_bigbang();
+      makePhrases();
+    }
+  </script>
+</head>
+
+<body onload="start_all();">
+  <div style="position: fixed; top: 0; z-index: 2; background: rgba(,,, 1);">
+    <h2>trans[lat][duc][cod]ing machine:</h2>
+  </div>
+  <div id="phrases" style="position: fixed; top:80px; height:120px; overflow:hidden; z-index:1;">
+    <p id="phrase"></p>
+  </div>
+  <div id="gt" style="position: absolute; top:200px; width: 800px; height:600px; overflow: hidden; z-index: 1:">
+  </div>
+</body>
+
+</html>
